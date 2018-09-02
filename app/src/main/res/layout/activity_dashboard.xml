@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.DashboardActivty">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/medicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="medicine" />
+
+        <Button
+            android:id="@+id/notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notification" />
+
+        <Button
+            android:id="@+id/emergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency" />
+
+        <Button
+            android:id="@+id/buddy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buddy" />
+        <Button
+            android:id="@+id/buddyrequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BuddyRequest" />
+
+    </LinearLayout>
+</RelativeLayout>
+</layout>
