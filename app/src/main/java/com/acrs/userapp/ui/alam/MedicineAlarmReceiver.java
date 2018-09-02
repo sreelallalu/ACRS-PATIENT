@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
 
-import com.acrs.userapp.PreviewDemo;
 import com.acrs.userapp.ui.medicine.medicine_add.MedicineCallActivtiy;
 
 public class MedicineAlarmReceiver extends BroadcastReceiver {

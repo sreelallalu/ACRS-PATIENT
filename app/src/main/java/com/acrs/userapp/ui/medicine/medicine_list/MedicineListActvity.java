@@ -43,6 +43,7 @@ public class MedicineListActvity extends BaseActivity implements MedicineListVie
         binding = DataBindingUtil.setContentView(this, R.layout.activity_medicine_list);
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Medicines");
         initialize();
     }
 

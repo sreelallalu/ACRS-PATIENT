@@ -33,7 +33,9 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Login");
         initialize();
+
     }
 
     @Override

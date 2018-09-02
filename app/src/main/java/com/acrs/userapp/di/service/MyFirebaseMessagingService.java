@@ -71,10 +71,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         if (type.equals("medicine_add")) {
 
+           Log.e("medicine_msg",data.toString());
+
             String medicinetime = data.get("med_time");
             String title = data.get("title");
             String med_name = data.get("med_name");
-            String who = data.get("who");
+            String whoadded = data.get("med_added");
             String med_note = data.get("med_note");
             alarmSetting(medicinetime,med_name,med_note);
 
@@ -91,7 +93,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             //intent.putExtra(FIREBASE_DATA, remoteMessage);
 
-            notifyMsg(title, med_name + " added by " + who, pendingIntent);
+            notifyMsg(title, med_name + " added by " + whoadded, pendingIntent);
 
 
         }
@@ -160,6 +162,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         long datecurrent = cal.getTimeInMillis();
         Log.e("timemilli", cal.getTimeInMillis() + "");
 
+
+        Log.e("day", cal.getTimeInMillis() + "");
+        Log.e("month", cal.getTimeInMillis() + "");
+        Log.e("year", cal.getTimeInMillis() + "");
+        Log.e("hour", cal.getTimeInMillis() + "");
+        Log.e("minute", cal.getTimeInMillis() + "");
+        Log.e("second", cal.getTimeInMillis() + "");
+
         String aTime = time;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try {
@@ -171,6 +181,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
             return;
         }
+
+        Log.e("day", cal.get(Calendar.DAY_OF_MONTH) + "");
+        Log.e("month", cal.get(Calendar.MONTH) + "");
+        Log.e("year", cal.get(Calendar.YEAR) + "");
+        Log.e("hour", cal.get(Calendar.HOUR) + "");
+        Log.e("minute", cal.get(Calendar.MINUTE) + "");
+        Log.e("second", cal.get(Calendar.SECOND) + "");
 
         if (datecurrent < cal.getTimeInMillis()) {
 

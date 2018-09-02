@@ -17,7 +17,6 @@ import com.acrs.userapp.ui.buddy.buddy_list.BuddyListActvity;
 import com.acrs.userapp.ui.emergency.EmergencyActvity;
 import com.acrs.userapp.ui.login.LoginActivity;
 import com.acrs.userapp.ui.medicine.medicine_list.MedicineListActvity;
-import com.acrs.userapp.ui.notification.NotificationActivtiy;
 
 import javax.inject.Inject;
 
@@ -38,6 +37,7 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Dashboard");
         initialize();
     }
 
@@ -72,7 +72,7 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
 
                 try {
                     String appname = getString(R.string.app_name);
-                    String text = appname + "application"  + "This is my unique id " + dataManager.getUserId();
+                    String text = appname + " Application "  + " \n This is my unique id " + dataManager.getUserId();
 
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
@@ -106,7 +106,7 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
     @Override
     public void initialize() {
         binding.buddy.setOnClickListener(this);
-        binding.notification.setOnClickListener(this);
+
         binding.emergency.setOnClickListener(this);
         binding.medicine.setOnClickListener(this);
         binding.buddyrequest.setOnClickListener(this);
@@ -128,10 +128,7 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
             Intent intent = new Intent(this, MedicineListActvity.class);
             startActivity(intent);
         }
-        if (v.getId() == binding.notification.getId()) {
-            Intent intent = new Intent(this, NotificationActivtiy.class);
-            startActivity(intent);
-        }
+
         if (v.getId() == binding.buddyrequest.getId()) {
             Intent intent = new Intent(this, BuddyRequestViewActvity.class);
             startActivity(intent);

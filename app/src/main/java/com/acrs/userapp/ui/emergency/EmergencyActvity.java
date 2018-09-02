@@ -15,6 +15,9 @@ import com.acrs.userapp.ui.emergency.Util.SweetAlertDialog;
 import com.acrs.userapp.util.Permission;
 import com.acrs.userapp.util.PermissionHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -25,6 +28,7 @@ public class EmergencyActvity extends BaseActivity implements EmergencyView {
 
     @Inject
     Emergency_i_presenter<EmergencyView> presenter;
+    private String uId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class EmergencyActvity extends BaseActivity implements EmergencyView {
 
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Emergency");
         permissionCheck();
         Button button = findViewById(R.id.emergency_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -127,11 +132,19 @@ public class EmergencyActvity extends BaseActivity implements EmergencyView {
             longitude = location.getLongitude() + "";
         }
 
+        String userdata = dataManager.getUserdata();
 
+        try {
+            JSONObject userOBJ = new JSONObject(userdata);
+            uId = userOBJ.getString("id");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("latitude", latitude);
         hashMap.put("longitude", longitude);
-        hashMap.put("userid", dataManager.getUserId());
+        hashMap.put("userid", uId);
         hashMap.put("tag", "panic");
 
         Log.e("location",hashMap.toString());
@@ -165,6 +178,7 @@ public class EmergencyActvity extends BaseActivity implements EmergencyView {
     @Override
     public void panicSucc() {
         super.progresShow(false);
+        finish();
     }
 
     @Override

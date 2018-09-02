@@ -33,7 +33,7 @@ public class EmergencyPresenter<T extends EmergencyView> extends BasePresenter<T
                     try {
                         String res = response.body().string();
                         Log.e("response",res);
-                     //   successResponseAccept(res);
+                        getView().panicSucc();
                     } catch (Exception e) {
                         e.printStackTrace();
 

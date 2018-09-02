@@ -30,6 +30,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Register");
         initialize();
     }
 
@@ -53,13 +54,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         String password = binding.password.getText().toString();
         String age = binding.age.getText().toString();
         String poc = binding.poc.getText().toString();
-        String gender=((RadioButton)findViewById(binding.gender.getCheckedRadioButtonId())).getText().toString();
+        String gender = ((RadioButton) findViewById(binding.gender.getCheckedRadioButtonId())).getText().toString();
 
         boolean check = true;
 
         if (name != null && name.length() < 3) {
             check = false;
-              binding.name.setError("Invalid name");
+            binding.name.setError("Invalid name");
         }
         if (mobile != null && mobile.length() < 10) {
             check = false;
@@ -72,8 +73,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
         }
 
-        if(check)
-        {
+        if (check) {
 
             binding.name.setError(null);
             binding.mobile.setError(null);
@@ -81,16 +81,16 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
             binding.password.setError(null);
             binding.poc.setError(null);
             super.progresShow(true);
-            HashMap<String,String> hashMap=new HashMap<>();
-            hashMap.put("tag",RegisterWebApi.RegisterParms.TAGNAME);
-            hashMap.put(RegisterWebApi.RegisterParms.NAME,name);
-            hashMap.put(RegisterWebApi.RegisterParms.GENDER,gender);
-            hashMap.put(RegisterWebApi.RegisterParms.MOBILE,mobile);
-            hashMap.put(RegisterWebApi.RegisterParms.AGE,age);
-            hashMap.put(RegisterWebApi.RegisterParms.POC,poc);
-            hashMap.put(RegisterWebApi.RegisterParms.EMAIL,email);
-            hashMap.put(RegisterWebApi.RegisterParms.PASSWORD,password);
-            hashMap.put(RegisterWebApi.RegisterParms.FIREBASE,dataManager.getFirebaseID()==null?"":dataManager.getFirebaseID());
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put("tag", RegisterWebApi.RegisterParms.TAGNAME);
+            hashMap.put(RegisterWebApi.RegisterParms.NAME, name);
+            hashMap.put(RegisterWebApi.RegisterParms.GENDER, gender);
+            hashMap.put(RegisterWebApi.RegisterParms.MOBILE, mobile);
+            hashMap.put(RegisterWebApi.RegisterParms.AGE, age);
+            hashMap.put(RegisterWebApi.RegisterParms.POC, poc);
+            hashMap.put(RegisterWebApi.RegisterParms.EMAIL, email);
+            hashMap.put(RegisterWebApi.RegisterParms.PASSWORD, password);
+            hashMap.put(RegisterWebApi.RegisterParms.FIREBASE, dataManager.getFirebaseID() == null ? "" : dataManager.getFirebaseID());
 
             presenter.register(hashMap);
 
@@ -110,7 +110,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         SnakBarCallback("Registration Success", new Callback() {
             @Override
             public void back() {
-                Intent intent=new Intent(RegisterActivity.this, DashboardActivty.class);
+                Intent intent = new Intent(RegisterActivity.this, DashboardActivty.class);
                 startActivity(intent);
                 finish();
 

@@ -9,18 +9,31 @@
 
 
     <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
-        <Button
-            android:id="@+id/emergency_button"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/red"
-            android:text="Emergency Button"
-            android:textColor="@color/white" />
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/emergency_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/red"
+                android:text="Emergency Button"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+
+
+
+
+
     </LinearLayout>
 </RelativeLayout>
 </layout>

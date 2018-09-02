@@ -7,7 +7,7 @@
     <android.support.v7.widget.CardView
        android:layout_margin="5dp"
         app:cardElevation="5dp"
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -28,21 +28,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/buddy_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name"
                     android:textColor="#000"
-                    android:textSize="15sp" />
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
                     android:id="@+id/buddy_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:text="Phone Number"
-                    android:textColor="@android:color/holo_orange_dark" />
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -55,6 +55,7 @@
 
                 <Button
 
+                    android:elevation="5dp"
                     android:layout_margin="5dp"
                     android:padding="5dp"
                     android:background="@color/colorPrimary"

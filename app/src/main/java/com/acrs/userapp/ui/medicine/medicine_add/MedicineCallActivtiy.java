@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.acrs.userapp.PreviewDemo;
+import com.acrs.userapp.ui.alam.PreviewDemo;
 import com.acrs.userapp.R;
 import com.acrs.userapp.ui.base.BaseActivity;
 
@@ -46,8 +46,7 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
             medicine_not = "medicine one called";
             medicine_name = "medicine one called";
         }
-        medicine_not = "medicine one called";
-        medicine_name = "medicine one called";
+
         TextView medi_name = findViewById(R.id.medicine_name);
         TextView medi_note = findViewById(R.id.medicine_note);
         layout = findViewById(R.id.backgroud);

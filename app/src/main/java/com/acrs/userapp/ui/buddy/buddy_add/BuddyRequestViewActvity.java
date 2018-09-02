@@ -23,7 +23,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class BuddyRequestViewActvity extends BaseActivity implements BuddyRequestViewView,BuddyListAdapter.OnAdapterListener,SwipeRefreshLayout.OnRefreshListener {
+public class BuddyRequestViewActvity extends BaseActivity implements BuddyRequestViewView, BuddyListAdapter.OnAdapterListener, SwipeRefreshLayout.OnRefreshListener {
     ActivityBuddyListBinding binding;
     private boolean refreshclick;
 
@@ -40,6 +40,7 @@ public class BuddyRequestViewActvity extends BaseActivity implements BuddyReques
         binding = DataBindingUtil.setContentView(this, R.layout.activity_buddy_list);
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Buddy Request");
         initialize();
     }
 
@@ -47,7 +48,7 @@ public class BuddyRequestViewActvity extends BaseActivity implements BuddyReques
     public void initialize() {
         binding.swipeRefresh.setOnRefreshListener(this);
         binding.recycler.setLayoutManager(new LinearLayoutManager(this));
-        listAdapter = new BuddyListAdapter(new ArrayList<BuddyListModel>(), this,true);
+        listAdapter = new BuddyListAdapter(new ArrayList<BuddyListModel>(), this, true);
         binding.recycler.setAdapter(listAdapter);
         refreshData();
     }
@@ -75,7 +76,8 @@ public class BuddyRequestViewActvity extends BaseActivity implements BuddyReques
 
     @Override
     public void acceptSuccess() {
-        super.progresCancel(false);
+        super.progresShow(false);
+        finish();
 
 
     }
@@ -100,10 +102,11 @@ public class BuddyRequestViewActvity extends BaseActivity implements BuddyReques
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }hashMap.put("tag", "Viewrequest");
+        }
+        hashMap.put("tag", "Viewrequest");
 
         hashMap.put("userid", u_id);
-        Log.e("hashmap",hashMap.toString());
+        Log.e("hashmap", hashMap.toString());
 
         presenter.buddyRequestList(hashMap);
     }
@@ -111,16 +114,13 @@ public class BuddyRequestViewActvity extends BaseActivity implements BuddyReques
     @Override
     public void adapterItemClick(BuddyListModel item) {
 
-       HashMap<String,String> hashMap=new HashMap<>();
-       hashMap.put("buddyid",item.getBuddy_id());
-       hashMap.put("userid",u_id!=null?u_id:"");
-       hashMap.put("status","1");
-       hashMap.put("tag","Approve");
-
-
-
-       super.progresShow(true);
-       presenter.buddyaccept(hashMap);
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("buddyid", item.getBuddy_id());
+        hashMap.put("userid", u_id != null ? u_id : "");
+        hashMap.put("status", "1");
+        hashMap.put("tag", "Approve");
+        super.progresShow(true);
+        presenter.buddyaccept(hashMap);
 
 
     }

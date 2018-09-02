@@ -38,6 +38,7 @@ public class BuddyListActvity extends BaseActivity implements BuddyListView, Swi
         binding = DataBindingUtil.setContentView(this, R.layout.activity_buddy_list);
         getActivityComponent().inject(this);
         presenter.onAttach(this);
+        getSupportActionBar().setTitle("Buddies");
         initialize();
 
     }
