@@ -69,16 +69,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (data.containsKey("type")) {
             type = data.get("type");
         }
+        Log.e("data", data.toString());
         if (type.equals("medicine_add")) {
 
-           Log.e("medicine_msg",data.toString());
+            Log.e("medicine_msg", data.toString());
 
             String medicinetime = data.get("med_time");
             String title = data.get("title");
             String med_name = data.get("med_name");
             String whoadded = data.get("med_added");
             String med_note = data.get("med_note");
-            alarmSetting(medicinetime,med_name,med_note);
+            alarmSetting(medicinetime, med_name, med_note);
 
             Intent intent = new Intent(this, MedicineListActvity.class);
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -95,6 +96,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             notifyMsg(title, med_name + " added by " + whoadded, pendingIntent);
 
+
+        } else if (type.equals("takepic")) {
+
+            Log.e("takepic", "takepic");
+
+            int random = new Random().nextInt(61) + 20;
+            Calendar cal = Calendar.getInstance();
+            Intent intent = new Intent(this, MedicineAlarmReceiver.class);
+            intent.putExtra("type", true);
+            intent.putExtra("b_id", data.get("buddy_id"));
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), random, intent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis() + 1000, pendingIntent);
 
         }
 
@@ -163,13 +177,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.e("timemilli", cal.getTimeInMillis() + "");
 
 
-        Log.e("day", cal.getTimeInMillis() + "");
-        Log.e("month", cal.getTimeInMillis() + "");
-        Log.e("year", cal.getTimeInMillis() + "");
-        Log.e("hour", cal.getTimeInMillis() + "");
-        Log.e("minute", cal.getTimeInMillis() + "");
-        Log.e("second", cal.getTimeInMillis() + "");
-
         String aTime = time;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try {
@@ -194,13 +201,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Intent intent = new Intent(this, MedicineAlarmReceiver.class);
             intent.putExtra("medi_not", mednot);
             intent.putExtra("medi_name", med_name);
+            intent.putExtra("type", false);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), random, intent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
             alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-        }else
+        } else
 
         {
 
@@ -208,9 +216,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
 
-
     }
-
 
 
     private void notifyMsg(String title, String message, PendingIntent pendingIntent) throws Exception {

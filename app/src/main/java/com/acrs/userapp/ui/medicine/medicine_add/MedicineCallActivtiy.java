@@ -110,7 +110,6 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
         }
 
 
-
     }
 
     private void timerStart() {
@@ -141,7 +140,7 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
     private void apiNotresponding() {
 
 
-        startActivity(new Intent(this, PreviewDemo.class));
+        startActivity(new Intent(this, PreviewDemo.class).putExtra("request", false));
         dismissApp();
         finish();
 

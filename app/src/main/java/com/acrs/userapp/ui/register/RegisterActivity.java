@@ -75,25 +75,30 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
         if (check) {
 
-            binding.name.setError(null);
-            binding.mobile.setError(null);
-            binding.email.setError(null);
-            binding.password.setError(null);
-            binding.poc.setError(null);
-            super.progresShow(true);
-            HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put("tag", RegisterWebApi.RegisterParms.TAGNAME);
-            hashMap.put(RegisterWebApi.RegisterParms.NAME, name);
-            hashMap.put(RegisterWebApi.RegisterParms.GENDER, gender);
-            hashMap.put(RegisterWebApi.RegisterParms.MOBILE, mobile);
-            hashMap.put(RegisterWebApi.RegisterParms.AGE, age);
-            hashMap.put(RegisterWebApi.RegisterParms.POC, poc);
-            hashMap.put(RegisterWebApi.RegisterParms.EMAIL, email);
-            hashMap.put(RegisterWebApi.RegisterParms.PASSWORD, password);
-            hashMap.put(RegisterWebApi.RegisterParms.FIREBASE, dataManager.getFirebaseID() == null ? "" : dataManager.getFirebaseID());
+            if(dataManager.getFirebaseID()!=null) {
 
-            presenter.register(hashMap);
+                binding.name.setError(null);
+                binding.mobile.setError(null);
+                binding.email.setError(null);
+                binding.password.setError(null);
+                binding.poc.setError(null);
+                super.progresShow(true);
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put("tag", RegisterWebApi.RegisterParms.TAGNAME);
+                hashMap.put(RegisterWebApi.RegisterParms.NAME, name);
+                hashMap.put(RegisterWebApi.RegisterParms.GENDER, gender);
+                hashMap.put(RegisterWebApi.RegisterParms.MOBILE, mobile);
+                hashMap.put(RegisterWebApi.RegisterParms.AGE, age);
+                hashMap.put(RegisterWebApi.RegisterParms.POC, poc);
+                hashMap.put(RegisterWebApi.RegisterParms.EMAIL, email);
+                hashMap.put(RegisterWebApi.RegisterParms.PASSWORD, password);
+                hashMap.put(RegisterWebApi.RegisterParms.FIREBASE, dataManager.getFirebaseID() == null ? "" : dataManager.getFirebaseID());
 
+                presenter.register(hashMap);
+            }else{
+                super.SnakBarString("firebase id not sync with server plz check ur online or restart the application");
+
+            }
         }
 
 
