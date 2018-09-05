@@ -84,6 +84,7 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
         void back();
     }
 
+
     public void SnakBarCallback(String msg, Callback callback) {
         addCallback = callback;
         Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),

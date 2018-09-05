@@ -38,6 +38,7 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine_add);
+        Log.e("created", "created");
         Intent intent = getIntent();
         try {
             medicine_not = intent.getStringExtra("med_not");
@@ -103,8 +104,8 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
     }
 
     public void finishs() {
-        startActivity(new Intent(this, DashboardActivty.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
-        finish();
+        startActivity(new Intent(this, DashboardActivty.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+        this.finish();
     }
 
     private void dismissApp() {
@@ -148,7 +149,7 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
     private void apiNotresponding() {
 
         dismissApp();
-        startActivity(new Intent(this, PreviewDemo.class).putExtra("request", false).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+        startActivity(new Intent(this, PreviewDemo.class).putExtra("request", false).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
         finish();
 
 
@@ -234,6 +235,13 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        display = true;
+        dismissApp();
+        finishs();
     }
 
     @Override

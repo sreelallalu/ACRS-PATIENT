@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,7 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
         presenter.onAttach(this);
         getSupportActionBar().setTitle("Dashboard");
         initialize();
+        Log.e("dashboard","dashboard");
     }
 
     @Override
@@ -53,6 +55,14 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
 
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        finish();
+
     }
 
     @Override
@@ -72,7 +82,7 @@ public class DashboardActivty extends BaseActivity implements DashboardView, Vie
 
                 try {
                     String appname = getString(R.string.app_name);
-                    String text = appname + " Application "  + " \n This is my unique id " + dataManager.getUserId();
+                    String text = appname + " Application " + " \n This is my unique id " + dataManager.getUserId();
 
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
