@@ -18,20 +18,21 @@ public class MedicineAlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         this.context = context;
         try {
-         if(!intent.getBooleanExtra("type",false)) {
-             Intent i = new Intent(context, MedicineCallActivtiy.class);
-             i.putExtra("med_not", intent.getStringExtra("medi_not"));
-             i.putExtra("med_name", intent.getStringExtra("medi_name"));
+            if (!intent.getBooleanExtra("type", false)) {
+                Intent i = new Intent(context, MedicineCallActivtiy.class);
+                i.putExtra("med_not", intent.getStringExtra("medi_not"));
+                i.putExtra("med_name", intent.getStringExtra("medi_name"));
 
-             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-             context.startActivity(i);
-         }else{
-             Intent i = new Intent(context, PreviewDemo.class);
-             i.putExtra("b_id", intent.getStringExtra("b_id"));
-             i.putExtra("request", true);
-             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-             context.startActivity(i);
-         }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(i);
+            } else {
+                Intent i = new Intent(context, PreviewDemo.class);
+                i.putExtra("b_id", intent.getStringExtra("b_id"));
+                i.putExtra("request", true);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

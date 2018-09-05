@@ -34,7 +34,14 @@
         </activity>
         <activity android:name=".ui.alam.MainActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.dashboard.DashboardActivty" />
+        <activity
+            android:name=".ui.dashboard.DashboardActivty"
+            android:launchMode="singleTop"
+
+            >
+
+
+        </activity>
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".ui.buddy.buddy_add.BuddyRequestViewActvity" />
         <activity android:name=".ui.buddy.buddy_list.BuddyListActvity" />
@@ -45,21 +52,22 @@
             android:screenOrientation="portrait"
 
             >
-          <!--  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--  <intent-filter>
+                  <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
--->
+                  <category android:name="android.intent.category.LAUNCHER" />
+              </intent-filter>
+  -->
 
         </activity>
         <activity
+            android:parentActivityName=".ui.dashboard.DashboardActivty"
             android:name=".ui.medicine.medicine_list.MedicineListActvity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.notification.NotificationActivtiy" />
 
-        <receiver android:name=".ui.alam.MedicineAlarmReceiver"
+        <receiver
+            android:name=".ui.alam.MedicineAlarmReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.acrs.userapp.ui.medicine" />
@@ -67,7 +75,9 @@
         </receiver>
         <receiver android:name=".ui.medicine.medicine_list.MedicineNotificationCancel" />
 
-        <activity android:name=".ui.alam.PreviewDemo">
+        <activity android:name=".ui.alam.PreviewDemo"
+
+       >
 
         </activity>
 

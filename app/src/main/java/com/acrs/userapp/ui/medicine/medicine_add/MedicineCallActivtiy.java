@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.acrs.userapp.ui.alam.PreviewDemo;
 import com.acrs.userapp.R;
 import com.acrs.userapp.ui.base.BaseActivity;
+import com.acrs.userapp.ui.dashboard.DashboardActivty;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -62,7 +63,8 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
             public void onClick(View v) {
                 display = true;
                 dismissApp();
-                finish();
+                finishs();
+
             }
         });
         textToSpeech = new TextToSpeech(this, this);
@@ -100,6 +102,11 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
         timerStart();
     }
 
+    public void finishs() {
+        startActivity(new Intent(this, DashboardActivty.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+        finish();
+    }
+
     private void dismissApp() {
         countdowntimer.cancel();
         if (textToSpeech != null) {
@@ -111,6 +118,7 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
 
 
     }
+
 
     private void timerStart() {
         //txt_timer.setText("" + millisUntilFinished / 1000);
@@ -139,9 +147,8 @@ public class MedicineCallActivtiy extends BaseActivity implements MedicineCallVi
 
     private void apiNotresponding() {
 
-
-        startActivity(new Intent(this, PreviewDemo.class).putExtra("request", false));
         dismissApp();
+        startActivity(new Intent(this, PreviewDemo.class).putExtra("request", false).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
         finish();
 
 

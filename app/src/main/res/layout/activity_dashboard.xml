@@ -73,7 +73,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="EMERGRNCY"
+                    android:text="EMERGENCY"
                     android:textSize="20dp" />
 
                 <ImageView

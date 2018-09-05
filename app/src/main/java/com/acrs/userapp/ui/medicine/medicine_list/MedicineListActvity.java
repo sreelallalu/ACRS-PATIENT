@@ -60,7 +60,7 @@ public class MedicineListActvity extends BaseActivity implements MedicineListVie
         listAdapter = new MedicineAdapter(new ArrayList<MedicineListModel>(), this);
         binding.recycler.setAdapter(listAdapter);
         refreshData();
-       // alarmSetting();
+        // alarmSetting();
 
     }
 
@@ -75,10 +75,16 @@ public class MedicineListActvity extends BaseActivity implements MedicineListVie
         refreshclick = false;
 
 
-        HashMap<String,String> hashMap=new HashMap<>();
-        hashMap.put("tag",MedicineListWebApi.MedicineParams.TAGNAME);
-        hashMap.put(MedicineListWebApi.MedicineParams.PATIENT_ID,dataManager.getUserId());
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("tag", MedicineListWebApi.MedicineParams.TAGNAME);
+        hashMap.put(MedicineListWebApi.MedicineParams.PATIENT_ID, dataManager.getUserId());
         presenter.medicineListApi(hashMap);
+
+        try {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -97,6 +103,12 @@ public class MedicineListActvity extends BaseActivity implements MedicineListVie
         listAdapter.setList(list != null ? list.size() > 0 ? list : new ArrayList<MedicineListModel>() : new ArrayList<MedicineListModel>());
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, DashboardActivty.class));
+        finish();
     }
 
     @Override
@@ -138,11 +150,11 @@ public class MedicineListActvity extends BaseActivity implements MedicineListVie
 
 
         Intent intent = new Intent(this, DashboardActivty.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 1253, intent, PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 1253, intent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),pendingIntent );
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
         Toast.makeText(this, "Alarm worked.", Toast.LENGTH_LONG).show();
     }
 
